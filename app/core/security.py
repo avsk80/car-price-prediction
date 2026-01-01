@@ -25,5 +25,5 @@ def verify_access_token(token: str) -> dict:
             )
         return payload
     except JWTError:
-        raise ValueError("Invalid token")
+        return None
     
