@@ -52,3 +52,5 @@ uvicorn==0.35.0
 watchdog==6.0.0
 dotenv==1.0.0
 jose
+redis[async]
+prometheus-fastapi-instrumentator==7.1.0

@@ -12,6 +12,6 @@ class Settings:
     JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REDIS_URL: str = os.getenv("REDIS_URL")
-    MODEL_PATH: str = "app/models/model.pkl"
+    MODEL_PATH: str = "app/models/model.joblib"
 
 settings = Settings()
