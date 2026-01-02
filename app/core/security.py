@@ -1,6 +1,6 @@
 # handles jwt token creation and verification for user authentication
 from datetime import datetime, timedelta, timezone
-from jose import JWT, JWTError
+from jose import jwt, JWTError
 from app.core.config import settings
 
 def create_access_token(data: dict, expire_minutes: int = settings.ACCESS_TOKEN_EXPIRE_MINUTES) -> str:
@@ -9,7 +9,7 @@ def create_access_token(data: dict, expire_minutes: int = settings.ACCESS_TOKEN_
     to_encode.update({"exp": expire})
     # The structure of the JWT token is header.payload.signature
     # Sign the token with the secret key and algorithm
-    encoded_jwt = JWT.encode(
+    encoded_jwt = jwt.encode(
         to_encode, 
         settings.JWT_SECRET_KEY, 
         algorithm=settings.JWT_ALGORITHM
@@ -18,7 +18,7 @@ def create_access_token(data: dict, expire_minutes: int = settings.ACCESS_TOKEN_
 
 def verify_access_token(token: str) -> dict:
     try:
-        payload = JWT.decode(
+        payload = jwt.decode(
             token, 
             settings.JWT_SECRET_KEY, 
             algorithms=[settings.JWT_ALGORITHM]
